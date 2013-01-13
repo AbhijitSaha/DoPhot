@@ -10,6 +10,7 @@ c  PKPRFMN  parameter introduced  April 29, 1994 (AS)
 c  PKPRFHI and LO modification made June 5, 1994 (AS)
 c
       SUBROUTINE VARIPARPLANE(NSTOT, NFAST, NSLOW)
+      integer*4 quot
       PARAMETER (MAXFIL = 1024)
       parameter (maxfit = 128)
       parameter (quot   = 3)

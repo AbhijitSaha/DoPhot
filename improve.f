@@ -127,7 +127,7 @@ c  central intensity is
 	      ELSE
 	        IF (JMTYPE .NE. 3) JMTYPE = 4	
 	      END IF
-	      CALL ADDSTAR(ONESTAR,BIG,NOISE,NFAST,NSLOW,STARPAR(1,I),ISUB)
+	     CALL ADDSTAR(ONESTAR,BIG,NOISE,NFAST,NSLOW,STARPAR(1,I),ISUB)
 	    ELSE
 	      JMTYPE = 6	
 	if(lverb.gt.20) then

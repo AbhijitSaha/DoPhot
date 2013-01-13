@@ -29,7 +29,7 @@ C
 C
   100 DKEY=DATUM(LIMLO)
       IKEY=INDEX(LIMLO)
-D     TYPE *,LIMLO,LIMHI
+CD     TYPE *,LIMLO,LIMHI
 C
 C Compare all elements in the sub-vector between LIMLO and LIMHI with
 C the current key datum.
@@ -73,11 +73,11 @@ C this is where we stick the key back into the vector.
 C
       DATUM(LO)=DKEY
       INDEX(LO)=IKEY
-D     DO 1666 I=LIMLO,LO-1
-D1666 TYPE *,DATUM(I)
-D     TYPE *,DATUM(L0),' KEY'
-D     DO 2666 I=LO+1,LIMHI
-D2666 TYPE *,DATUM(I)
+CD     DO 1666 I=LIMLO,LO-1
+CD1666 TYPE *,DATUM(I)
+CD     TYPE *,DATUM(L0),' KEY'
+CD     DO 2666 I=LO+1,LIMHI
+CD2666 TYPE *,DATUM(I)
 C
 C At this point in the subroutine, all data between LIMLO and LO-1, 
 C inclusive, are less than DATUM(LO), and all data between LO+1 and 
@@ -122,8 +122,8 @@ C
       STKLO(NSTAK)=LIMLO
       STKHI(NSTAK)=LO-1
       LIMLO=LO+1
-D     DO 3666 I=1,NSTAK
-D3666 TYPE *,'STACK: ',STKLO(I),STKHI(I)
+CD     DO 3666 I=1,NSTAK
+CD3666 TYPE *,'STACK: ',STKLO(I),STKHI(I)
       GO TO 100
 C
   300 CONTINUE
@@ -157,8 +157,8 @@ C
       STKLO(NSTAK)=LO+1
       STKHI(NSTAK)=LIMHI
       LIMHI=LO-1
-D     DO 4666 I=1,NSTAK
-D4666 TYPE *,'STACK: ',STKLO(I),STKHI(I)
+CD     DO 4666 I=1,NSTAK
+CD4666 TYPE *,'STACK: ',STKLO(I),STKHI(I)
       GO TO 100
 C
   400 CONTINUE

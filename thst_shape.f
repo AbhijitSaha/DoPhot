@@ -94,7 +94,7 @@ c
      *             ' Obj#, NPTS, IX & IY = ', I, NPT,IX,IY,
      *             '  .... skipping star: ought to be type 7'
                 end if
-	      CALL ADDSTAR(ONESTAR,BIG,NOISE,NFAST,NSLOW,STARPAR(1,I),ISUB)
+	     CALL ADDSTAR(ONESTAR,BIG,NOISE,NFAST,NSLOW,STARPAR(1,I),ISUB)
 	    ELSE
 	      if(lverb.gt.20) then
 	       write(6,*) ' Obj#, #-PTS FIT, X, Y = ', I, NPT, IX, IY

@@ -1,0 +1,46 @@
+c      parameter (nrmax=4096,ncmax=4096)
+c      parameter (nrmax=5000,ncmax=5000)
+c      parameter (nrmax=6000,ncmax=6000)
+      parameter (nrmax=10000,ncmax=10000)
+      parameter (nsmax=1000000)
+      parameter (npmax=7,npskymax=7)
+      parameter (npsky=7,nskyfit=3)
+      parameter (nppsf=6)
+      parameter (nphub=7,nhubfit=7)
+      parameter (nff=20)
+      parameter (nfits=2880, swab=1)
+      parameter (napmax = 80)
+c
+      common /tune1/ gxwid,gywid,skyguess
+      common /tune2/ irect(2),krect(2),arect(2)
+      common /tune3/ tmin,tmax,tfac,ibot,itop
+      common /tune4/ nit,npar,nfit1,nfit2
+      common /tune5/ fac,xpnd
+      common /tune6/ nphsub,nphob,icrit,ctpersat,widobl,cmax
+      common /tune7/ n0left,n0right
+      common /tune8/ stograt,discrim,sig(3)
+      common /tune9/ chicrit,xtra,crit7,snlim,bumpcrit,sn2cos
+      common /tune10/ enuff4,enuff7
+      common /tune11/ eperdn,rnoise
+      common /tune12/ ixby2,iyby2
+      common /tune13/ nbadleft,nbadright,nbadtop,nbadbot
+      common /tune14/ lverb
+      common /tune15/ acc(npmax),alim(npmax),ava(npmax)	
+      common /tune16/ flags(nff),files(nff)
+      common /tune17/ beta4,beta6
+      common /tune18/ pixthresh, nthpix
+      common /tune19/ apmagmaxerr
+      common /tune20/ jhxwid, jhywid, mprec
+      common /tune21/ fixpos
+      common /tune22/ npsffit
+      common /tune23/ napertures,apmax,apskymin,apskymax,aperrmax
+      common /tune24/ napertures2,apmax2,apskymin2,apskymax2
+c
+      integer*2 irect,krect
+      real*4 arect,sig
+      character*64 flags,files
+      logical fixpos
+
+
+
+
