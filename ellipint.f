@@ -1,0 +1,29 @@
+	SUBROUTINE ELLIPINT(AMAJOR,AMINOR,TILT,AREA,B5,A6,B7)
+c
+c
+	IF(AMAJOR .LT. AMINOR) then 
+         WRITE(6,*) ' Maj-axis .LT. Min-axis in WARMSTART input data'  
+	 WRITE(6,*) ' Proceed at grave risk !!! '
+	END IF
+	IF(AMAJOR .LE. 0.01) AMAJOR = 0.01
+	IF(AMINOR .LE. 0.01) AMINOR = 0.01
+c
+	ROOT1 = (2.35482/AMINOR)**2
+	ROOT2 = (2.35482/AMAJOR)**2
+c
+	AREA = 6.2832 / SQRT(ROOT1*ROOT2)
+c
+c 
+	A6 = 0.5*(ROOT2 - ROOT1) * SIN( 2.*( TILT / 57.29578 ) )
+c
+	A7MNA5 = (ROOT1 - ROOT2) * COS( 2.*( TILT / 57.29578 ) )
+	A7PLA5 = ROOT1 + ROOT2
+c
+	A7 = 0.5*(A7PLA5 + A7MNA5)
+	A5 = 0.5*(A7PLA5 - A7MNA5)
+c
+	B5 = 1./A5
+	B7 = 1./A7
+c
+	RETURN
+	END

@@ -1,0 +1,77 @@
+	FUNCTION HUBFUN(IX, A, FA, M, MMAX)
+C::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+C:  NOTE THAT NONE OF THE QUANTITIES ARE SCALED.  IN PRINCIPAL WE COULD
+C:  SCALE BOTH THE INTENSITIES AND THE POSITIONS, THOUGH THE LATTER LOOKS
+C:  TRICKY TO ME.  NOTE THAT DERIVATIVES OF 5, 6 AND 7 ARE COMPUTED BUT
+C:  NOT FIT FOR AT THE MOMENT.  WE ADOPT THE SHAPE OF THE SEEING PROFILE
+C:  BUT COULD EASILY SOLVE FOR ALL 7 PARAMETERS IN VARIPAR.
+C:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	COMMON /DRFAKE/NEEDIT
+	DIMENSION A(10), FA(7)
+	DIMENSION PP(2)
+	INTEGER*2 IX(2)
+	LOGICAL NEEDIT
+	DATA HALF, THIRD, SIXTH / 0.5, 0.3333333, 0.16666666/
+	DATA EXPMIN / -23. /
+	X = IX(1) - A(2)
+	Y = IX(2) - A(3)
+	A5 = 1./A(5)
+	A7 = 1./A(7)
+	T5 = A5*X
+	T6 = A(6)*Y
+	T7 = A7*Y
+	T1 = HALF*((T5 + 2*T6)*X + T7*Y)
+	IF (T1 .GT. 0) THEN
+	  DENOM = 1 + T1
+	  DDDT = 1
+	  PEXP = 1/DENOM
+	ELSE
+	  T1 = AMAX1(T1,EXPMIN)
+	  PEXP = EXP(-T1)
+	  DENOM = 1
+	  DDDT = 1
+	END IF
+	FA(4) = PEXP
+	PEXP = A(4)*PEXP
+	HUBFUN = PEXP + A(1)
+	IF (NEEDIT) THEN
+	  FA(6) = PEXP*DDDT/DENOM
+	  FA(2) = (T5 + T6)*FA(6)
+	  FA(3) = (A(6)*X + T7)*FA(6)
+	  FA(5) = HALF*T5**2*FA(6)
+	  FA(7) = HALF*T7**2*FA(6)
+	  FA(6) = -X*Y*FA(6)
+	  FA(1) = 1
+	END IF
+	RETURN
+	ENTRY HUB2FUN(IX, A, FA, M, MMAX)
+	A8 = 1./A(8)
+	A10 = 1./A(10)
+	DO 2757 I = 1, 2
+	  IOFF = (I - 1)*3
+	  X = IX(1) - A(2 + IOFF)
+	  Y = IX(2) - A(3 + IOFF)
+	  T8 = A8*X
+	  T9 = A(9)*Y
+	  T10 = A10*Y
+	  T1 = HALF*((T8 + 2*T9)*X + T10*Y)
+	  IF (T1 .GT. 0) THEN
+	    DENOM = 1 + T1
+	    DDDT = 1
+	    PP(I) = 1/DENOM
+	  ELSE
+	    PP(I) = EXP(-T1)
+	    DENOM = 1
+	    DDDT = 1
+	  END IF
+	  A4 = EXP(A(4 + IOFF))
+	  FA(4 + IOFF) = A4*PP(I)
+	  PP(I) = A4*PP(I)
+	  FAC = PP(I)*DDDT/DENOM
+	  FA(2 + IOFF) = (A8*X + A(9)*Y)*FAC
+	  FA(3 + IOFF) = (A(9)*X + A10*Y)*FAC
+2757	CONTINUE
+	FA(1) = 1
+	HUB2FUN = PP(1) + PP(2) + A(1)
+	RETURN
+	END

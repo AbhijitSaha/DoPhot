@@ -1,0 +1,31 @@
+	FUNCTION OBLIT(ONESTAR,BIG,NOISE,NFAST,NSLOW,STARPAR)
+        include 'TUNEABLE'
+	INTEGER*2 BIG(NFAST,NSLOW)
+	INTEGER*4 NOISE(NFAST,NSLOW)
+	DIMENSION A(NPMAX), STARPAR(NPMAX)
+	EXTERNAL ONESTAR
+	LOGICAL OBLIT				
+	DATA MAGIC / 2147483647/
+	DUM = GUESS2(A, STARPAR, IX, IY)
+	WX = STARPAR(5)				
+	WY = STARPAR(7)				
+	IXHI = MIN0(IFIX(IX + WX/2 + 0.5), NFAST)
+	IXLO = MAX0(IFIX(IX - WX/2 + 0.5), 1)
+	IYHI = MIN0(IFIX(IY + WY/2 + 0.5), NSLOW)
+	IYLO = MAX0(IFIX(IY - WY/2 + 0.5), 1)
+	if(lverb.gt.30) then
+	  write(6,*) ' Obliterating following region :'
+          write(6,*) 'IXLO, IXHI, IYLO, IYHI = ',
+     1	   IXLO, IXHI, IYLO, IYHI
+	end if
+	DO 2757 JY = IYLO, IYHI
+	  DO 2758 JX = IXLO, IXHI
+	    BIG(JX, JY) = -32768
+	    NOISE(JX, JY) = MAGIC
+2758	  CONTINUE
+2757	CONTINUE
+	if(lverb.gt.40) write(6,*) 'OBLITERATION: IX & IY = ', IX, IY
+	if(lverb.gt.40) write(6,*) 'OBLITERATION: WX & WY = ', WX, WY
+	OBLIT = .TRUE.
+	RETURN
+	END
