@@ -1,4 +1,4 @@
- FC= ifort
+ FC= gfortran
  CC= gcc
 # CFLAGS=
 # FFLAGS= -O 

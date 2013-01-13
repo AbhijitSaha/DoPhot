@@ -1,3 +1,8 @@
+# Compiled files #
+##################
+*.o
+*.pyc
+
 # TeX stuff
 ##################
 *.log
@@ -6,11 +11,6 @@
 *.blg
 *.bbl
 *.nav
-*/ms.pdf
-
-# Compiled files #
-##################
-*.pyc
 
 
 # Packages #
