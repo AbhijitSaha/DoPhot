@@ -1,0 +1,61 @@
+Saha's version of DoPhot 
+
+======
+
+To grab the files use
+
+   git clone git@github.com:AbhijitSaha/DoPhot
+
+Files will got into the DoPhot/ directory.
+
+You can update from the server at any time by typing
+
+       git pull
+
+inside the DoPhot/ directory.
+
+If LaTeX or BiBTeX complain that they can't find mn2e.cls or mn2e.bst,
+just copy them into the manuscript directory.  For these files -- or
+any other changes specific to your computer -- "git cp" or "git add"
+should NOT be used.
+
+To edit collaboratively, you'll need to do a few more things.
+
+1. Create yourself an account on github (free) and tell AbhijitSaha your
+   username, so he can add you as a collaborator.
+
+2. Configure git on your machine, adapting the following
+
+       git config --global user.name "Alan M Turing"
+       git config --global user.email amt@universal.machine
+
+   This is not essential, but good practice.  It's fine to put your
+   real name and email address here -- no spam results.
+
+   This step needs to be done once per person per machine.
+
+3. Set ssh keys so you can communicate securely with the server.
+   See https://help.github.com/articles/generating-ssh-keys
+
+   This step also needs to be done once per person per machine.
+
+4. When you add a new file that you wish to be tracked:
+
+       git add myfile
+
+5. When you want to send your current version to the server:
+
+       git commit -am "short message"
+       git push
+
+6. A useful command is
+
+       git status
+
+7. You can see stats and stuff here:
+   https://github.com/AbhijitSaha/DoPhot
+
+8. Absolutely everything about git:
+
+   http://git-scm.com/book/
+
