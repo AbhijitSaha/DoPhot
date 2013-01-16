@@ -1,11 +1,7 @@
  FC= gfortran
- CC= gcc
-# CFLAGS=
-# FFLAGS= -O 
- CFLAGS= -O
 # get rid of qualifier g (allows use of dbx) when you're happy and
 # want speed
-# FFLAGS=  -g 
+FFLAGS=  -g -m64 -ffixed-line-length-80
 
 COBJECTS = diskio_unix.o
 
@@ -32,4 +28,7 @@ dophot: $(FOBJECTS) $(COBJECTS)
 	$(FC) $(FFLAGS) $(FOBJECTS) $(COBJECTS) \
 	-o xtest_dophot
 
+
+clean:
+	rm -f *.o
 
